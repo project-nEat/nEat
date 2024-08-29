@@ -6,12 +6,14 @@
   "scripts": {
     "start":  "node ./src/server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode=production --node-env=production",
+    "build": "webpack --mode=production --define-process-env-node-env production",
+    "build:docker": "chmod +x ./.docker/scripts/build.sh && ./.docker/scripts/build.sh",
     "build:dev": "webpack --mode=development",
-    "build:prod": "webpack --mode=production --node-env=production",
-    "dev": "concurrently \"webpack serve --open\" \"nodemon ./src/server/server.js\"",
+    "build:prod": "webpack --mode=production --define-process-env-node-env production",
+    "dev": "chmod +x ./.docker/scripts/dev.sh && ./.docker/scripts/dev.sh",
+    "dev-server": "nodemon ./src/server/server.js",
     "watch": "webpack --watch",
-    "serve": "webpack serve"
+    "serve": "webpack serve --open --hot"
   },
   "author": "",
   "license": "ISC",
