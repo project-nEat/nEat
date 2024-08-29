@@ -10,7 +10,7 @@ const isProduction = process.env.NODE_ENV == 'production';
 const stylesHandler = MiniCssExtractPlugin.loader;
 
 const config = {
-  entry: './src/index.js',
+  entry: './src/client/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
   },
@@ -20,7 +20,7 @@ const config = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'index.html',
+      template: './src/client/index.html',
     }),
 
     new MiniCssExtractPlugin(),
