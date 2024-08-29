@@ -1,10 +1,10 @@
 {
-  "name": "my-webpack-project",
+  "name": "neat",
   "version": "1.0.0",
-  "description": "My webpack project",
+  "description": "Never waste food again.",
   "main": "./src/client/index.js",
   "scripts": {
-    "start": "concurrently \"webpack serve --open\" \"nodemon ./src/server/server.js\"",
+    "start":  "concurrently \"webpack serve --open\" \"nodemon ./src/server/server.js\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode=production --node-env=production",
     "build:dev": "webpack --mode=development",
