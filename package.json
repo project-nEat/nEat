@@ -1,0 +1,22 @@
+{
+  "name": "neat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/project-nEat/nEat.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/project-nEat/nEat/issues"
+  },
+  "homepage": "https://github.com/project-nEat/nEat#readme",
+  "dependencies": {
+    "pg": "^8.12.0"
+  }
+}
