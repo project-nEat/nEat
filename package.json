@@ -4,11 +4,12 @@
   "description": "Never waste food again.",
   "main": "./src/client/index.js",
   "scripts": {
-    "start":  "node ./src/server/server.js",
+    "start": "node ./src/server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode=production --node-env=production",
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --node-env=production",
+    "build:tailwind": "npx tailwindcss -i ./src/client/styles/styles.css -o ./src/client/output.css --watch",
     "dev": "concurrently \"webpack serve --open\" \"nodemon ./src/server/server.js\"",
     "watch": "webpack --watch",
     "serve": "webpack serve"
@@ -35,7 +36,11 @@
     "concurrently": "^8.2.2",
     "express": "^4.19.2",
     "nodemon": "^3.1.4",
+    "postcss": "^8.4.41",
+    "postcss-loader": "^8.1.1",
+    "postcss-preset-env": "^10.0.2",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "tailwindcss": "^3.4.10"
   }
 }
