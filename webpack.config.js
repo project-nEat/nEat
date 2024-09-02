@@ -36,7 +36,6 @@ const config = {
       },
       {
         test: /\.css$/i,
-        include: path.resolve(__dirname, './src/client'),
         use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
       {
