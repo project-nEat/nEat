@@ -13,13 +13,7 @@ nEatController.deleteFoodTable = () => {
 
 };
 
-// nEatController.deleteUserTable = () => {
-// 	const queryString = 'drop table user';
-// 	db.query(queryString).then(data => {
-// 		console.log("trying to delete user table in database.")
-// 	  });
 
-// };
 
 nEatController.deleteUserTable = () => {
 	const queryString = 'drop table public.user';
@@ -98,6 +92,44 @@ nEatController.addFood = (user_id, foodItem, expires, opened, open_life, notify)
 	
 };
 
+nEatController.getAllFoodFor = (user_id) => {
+
+
+	const queryString = `SELECT * FROM public.food WHERE user_id='${user_id}'`;
+  
+  db.query(queryString).then(data => {
+    console.log(`all food for ${user_id}: ${JSON.stringify(data)}` );
+  });
+
+	// const queryString = `
+	// INSERT INTO public.food VALUES (${user_id}, ${foodItem}, ${expires}, ${opened}, ${open_life},${notify})
+	// `;
+	// db.query(queryString).then(data => {
+	// 	console.log("trying to insert food item into food table.");
+	//   });
+	
+};
+
+nEatController.deleteFood = (foodItem) => {
+
+
+	const queryString = `DELETE FROM public.food WHERE name='${foodItem}'`;
+  
+  db.query(queryString).then(data => {
+    console.log('deleted a new food item');
+  });
+
+	// const queryString = `
+	// INSERT INTO public.food VALUES (${user_id}, ${foodItem}, ${expires}, ${opened}, ${open_life},${notify})
+	// `;
+	// db.query(queryString).then(data => {
+	// 	console.log("trying to insert food item into food table.");
+	//   });
+	
+};
+
+
+
 nEatController.addUser = (email, passHash) => {
 
 
@@ -116,7 +148,41 @@ nEatController.addUser = (email, passHash) => {
 	
 };
 
+nEatController.getAllUsers = () => {
 
+
+	const queryString = `SELECT * FROM public.user`;
+  
+  db.query(queryString).then(data => {
+    console.log(`all users : ${JSON.stringify(data)}` );
+  });
+
+	// const queryString = `
+	// INSERT INTO public.food VALUES (${user_id}, ${foodItem}, ${expires}, ${opened}, ${open_life},${notify})
+	// `;
+	// db.query(queryString).then(data => {
+	// 	console.log("trying to insert food item into food table.");
+	//   });
+	
+};
+
+nEatController.deleteUser = (email) => {
+
+
+	const queryString = `DELETE FROM public.user WHERE email='${email}'`;
+  
+  db.query(queryString).then(data => {
+    console.log('deleted a user');
+  });
+
+	// const queryString = `
+	// INSERT INTO public.food VALUES (${user_id}, ${foodItem}, ${expires}, ${opened}, ${open_life},${notify})
+	// `;
+	// db.query(queryString).then(data => {
+	// 	console.log("trying to insert food item into food table.");
+	//   });
+	
+};
 // starWarsController.getCharacters = (req, res, next) => {
 //   console.log("trying to get characters from the database.")
 //   // write code here
@@ -185,5 +251,11 @@ nEatController.addUser = (email, passHash) => {
 //nEatController.deleteUserTable();
 
 //nEatController.addUser('ashrafkhan2@gmail.com','987654321');
-nEatController.addFood(1, "Apple_Juice", "2024-12-31", "2024-08-31", 7, 2);
+//nEatController.addFood(2, "Apple_Juice", "2024-12-31", "2024-08-31", 7, 2);
+//nEatController.addFood(2, "potatoes", "2024-12-31", "2024-08-31", 7, 2);
+
+//nEatController.deleteFood('Apple_Juice');
+//nEatController.deleteUser('ashrafkhaneetli@gmail.com');
+//nEatController.getAllFoodFor(2);
+//nEatController.getAllUsers();
 // module.exports = starWarsController;

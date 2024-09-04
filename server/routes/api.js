@@ -1,8 +1,10 @@
 const express = require('express');
 
-const starWarsController = require('../controllers/nEatController');
+const nEatController = require('../controllers/nEatController');
 
 const router = express.Router();
+
+
 
 router.get('/',
   starWarsController.getCharacters,
