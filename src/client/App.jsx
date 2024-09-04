@@ -13,6 +13,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/auth" element={<Auth />} />
+        {/* Catch all */}
+        <Route path="*" element={<Landing />} />
       </Routes>
     </Router>
   );
