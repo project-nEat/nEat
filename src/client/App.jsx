@@ -4,8 +4,8 @@ import {
   Route,
   Routes,
 } from 'react-router-dom';
-import Landing from './pages/Landing.jsx';
-import Auth from './pages/Auth.jsx';
+import Landing from './components/Landing.jsx';
+import Auth from './components/Auth.jsx';
 
 const App = () => {
   return (
