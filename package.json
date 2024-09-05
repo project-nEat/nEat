@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/project-nEat/nEat#readme",
   "dependencies": {
+    "express": "^4.19.2",
     "pg": "^8.12.0"
   }
 }

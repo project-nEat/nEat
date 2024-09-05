@@ -130,14 +130,16 @@ nEatController.deleteFood = (foodItem) => {
 
 
 
-nEatController.addUser = (email, passHash) => {
+nEatController.addUser = (email, passHash, res, next) => {
 
 
 	const queryString = 'INSERT INTO public.user (_id, email, passHash) VALUES (DEFAULT, $1, $2)';
-  const values = [email,passHash];
-  db.query(queryString, values).then(data => {
-    console.log('added a new user');
-  });
+	const values = [email,passHash];
+	db.query(queryString, values).then(data => {
+		console.log('added a new user');
+		res.locals.response = {'status':'ok'};
+		next();
+	});
 
 	// const queryString = `
 	// INSERT INTO public.food VALUES (${user_id}, ${foodItem}, ${expires}, ${opened}, ${open_life},${notify})
@@ -174,6 +176,48 @@ nEatController.deleteUser = (email) => {
   db.query(queryString).then(data => {
     console.log('deleted a user');
   });
+
+	// const queryString = `
+	// INSERT INTO public.food VALUES (${user_id}, ${foodItem}, ${expires}, ${opened}, ${open_life},${notify})
+	// `;
+	// db.query(queryString).then(data => {
+	// 	console.log("trying to insert food item into food table.");
+	//   });
+	
+};
+
+nEatController.checkUser = (req, res, next) => {
+
+
+	const queryString = `SELECT * FROM public.user WHERE email='${req.body.email}'`;
+  
+	try{
+
+	
+		db.query(queryString).then(data => {
+			console.log('checked for a user');
+			if(data['rows'].length == 0){
+				console.log("no such user exists.");
+				nEatController.addUser(req.body.email, req.body.password, res, next);
+				
+			}else if(data['rows'][0]['passhash'] != req.body.password){
+				console.log('wrong password');
+				res.locals.response = {'status':'fail'};
+				next();
+			}else{
+				console.log('user found');
+				res.locals.response = {'status':'ok'};
+				
+				next();
+			}
+
+		})
+	}catch{
+		console.log("user not found or could not connect to the database.");
+		res.locals.response = {'status':'fail'};
+		next();
+	}
+  	
 
 	// const queryString = `
 	// INSERT INTO public.food VALUES (${user_id}, ${foodItem}, ${expires}, ${opened}, ${open_life},${notify})
@@ -252,10 +296,10 @@ nEatController.deleteUser = (email) => {
 
 //nEatController.addUser('ashrafkhan2@gmail.com','987654321');
 //nEatController.addFood(2, "Apple_Juice", "2024-12-31", "2024-08-31", 7, 2);
-nEatController.addFood(2, "oranges", "2024-12-31", "2024-08-31", 7, 2);
+//nEatController.addFood(2, "oranges", "2024-12-31", "2024-08-31", 7, 2);
 
 //nEatController.deleteFood('Apple_Juice');
 //nEatController.deleteUser('ashrafkhaneetli@gmail.com');
 //nEatController.getAllFoodFor(2);
 //nEatController.getAllUsers();
-// module.exports = starWarsController;
+ module.exports = nEatController;
