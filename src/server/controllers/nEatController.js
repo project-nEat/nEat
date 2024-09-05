@@ -252,7 +252,7 @@ nEatController.deleteUser = (email) => {
 
 //nEatController.addUser('ashrafkhan2@gmail.com','987654321');
 //nEatController.addFood(2, "Apple_Juice", "2024-12-31", "2024-08-31", 7, 2);
-//nEatController.addFood(2, "potatoes", "2024-12-31", "2024-08-31", 7, 2);
+nEatController.addFood(2, "oranges", "2024-12-31", "2024-08-31", 7, 2);
 
 //nEatController.deleteFood('Apple_Juice');
 //nEatController.deleteUser('ashrafkhaneetli@gmail.com');
