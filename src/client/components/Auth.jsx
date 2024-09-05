@@ -17,7 +17,7 @@ const Auth = () => {
       body: JSON.stringify({ email, password })
     })
 
-    const { status } = response;
+    const status = response.data;
 
     // URL below will need to be changed to redirect to main page
     if (status === 'ok') navigate('/landing');
