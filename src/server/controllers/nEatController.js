@@ -74,14 +74,18 @@ nEatController.createFoodTable = () => {
   
 };
 
-nEatController.addFood = (user_id, foodItem, expires, opened, open_life, notify) => {
+nEatController.addFood = (req, res, next) => {//, user_id, foodItem, expires, opened, open_life, notify) => {
 
-
+	console.log('running addFood middle ware');
+	const { user_id, name, expires, opened, open_life, notify } = req.body;
 	const queryString = 'INSERT INTO public.food (_id, user_id, name, expires, opened, open_life, notify) VALUES (DEFAULT, $1,$2,$3,$4,$5,$6)';
-  const values = [user_id, foodItem, expires, opened, open_life, notify];
-  db.query(queryString, values).then(data => {
-    console.log('added a new food item');
-  });
+	const values = [user_id, name, expires, opened, open_life, notify];
+	db.query(queryString, values).then(data => {
+		console.log('added a new food item');
+		res.locals.response = {'status':'ok'};
+				
+		next();
+	});
 
 	// const queryString = `
 	// INSERT INTO public.food VALUES (${user_id}, ${foodItem}, ${expires}, ${opened}, ${open_life},${notify})

@@ -10,7 +10,21 @@ router.post('/loginorsignup',
   (req, res) => {
 
     console.log("got a request to add or varify a user.")
-    console.log('loginorsignup req.query: ', req.body);
+    console.log('loginorsignup req.body: ', req.body);
+    console.log('res.locals.response: ', res.locals.response);
+    res.status(200).json(res.locals.response);
+    //res.status(200).json(res.locals.queryResult.rows);
+    // res.send(res.locals.queryString);
+  }
+
+);
+
+router.post('/addfooditem',
+  nEatController.addFood,
+  (req, res) => {
+
+    console.log("got a request to add a fooditem.")
+    console.log('addfooditem req.body: ', req.body);
     console.log('res.locals.response: ', res.locals.response);
     res.status(200).json(res.locals.response);
     //res.status(200).json(res.locals.queryResult.rows);
