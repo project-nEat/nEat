@@ -21,7 +21,8 @@ router.post('/addfooditem',
   nEatController.addFood,
   (req, res) => {
 
-    console.log("got a request to add a fooditem.")
+    console.log("got a request to add a fooditem.");
+    
     console.log('addfooditem req.body: ', req.body);
     console.log('res.locals.response: ', res.locals.response);
     res.status(200).json(res.locals.response);
