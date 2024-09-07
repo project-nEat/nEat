@@ -170,8 +170,8 @@ nEatController.checkUser = (req, res, next) => {
 			}else{
 				console.log('user found');
 				console.log('user id: ', data['rows'][0]['_id']);
-				req.cookies = {'user_id' : data['rows'][0]['_id']};
-				res.locals.response = {'status':'ok', 'req.cookies': req.cookies};
+				res.cookies('user_id', data['rows'][0]['_id']);
+				res.locals.response = {'status':'ok', 'res.cookies': res.cookies};
 				
 				next();
 			}
