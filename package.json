@@ -1,26 +1,6 @@
 {
   "name": "neat",
   "version": "1.0.0",
-<<<<<<< HEAD
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/project-nEat/nEat.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/project-nEat/nEat/issues"
-  },
-  "homepage": "https://github.com/project-nEat/nEat#readme",
-  "dependencies": {
-    "express": "^4.19.2",
-    "pg": "^8.12.0"
-=======
   "description": "Never waste food again.",
   "main": "./src/client/index.js",
   "scripts": {
@@ -63,7 +43,7 @@
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.1",
     "react-toastify": "^10.0.5",
-    "tailwindcss": "^3.4.10"
->>>>>>> dev
+    "tailwindcss": "^3.4.10",
+    "pg": "^8.12.0"
   }
 }
