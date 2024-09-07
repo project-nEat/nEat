@@ -1,10 +1,22 @@
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+} from 'react-router-dom';
+import Landing from './components/Landing.jsx';
+import Auth from './components/Auth.jsx';
 
 const App = () => {
   return (
-    <div>
-      <h1 className="italic underline text-9xl">Welcome to nEat</h1>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/auth" element={<Auth />} />
+        {/* Catch all */}
+        <Route path="*" element={<Landing />} />
+      </Routes>
+    </Router>
   );
 };
 
