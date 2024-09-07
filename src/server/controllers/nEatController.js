@@ -66,12 +66,14 @@ nEatController.createFoodTable = () => {
 nEatController.addFood = (req, res, next) => {
 
 	console.log('running addFood middle ware');
-	const { user_id, name, expires, opened, open_life, notify } = req.body;
+	const { name, expires, opened, open_life, notify } = req.body;
+	console.log("req.cookies", req.cookies);
+	const user_id = req.cookies.user_id;
 	const queryString = 'INSERT INTO public.food (_id, user_id, name, expires, opened, open_life, notify) VALUES (DEFAULT, $1,$2,$3,$4,$5,$6)';
 	const values = [user_id, name, expires, opened, open_life, notify];
 	db.query(queryString, values).then(data => {
 		console.log('added a new food item');
-		res.locals.response = {'status':'ok'};
+		res.locals.response = {'status':'ok', 'req.cookies': req.cookies};
 				
 		next();
 	});
@@ -110,9 +112,12 @@ nEatController.addUser = (email, passHash, res, next) => {
 	const queryString = 'INSERT INTO public.user (_id, email, passHash) VALUES (DEFAULT, $1, $2)';
 	const values = [email,passHash];
 	db.query(queryString, values).then(data => {
+		console.log('query sent for adding user: ', queryString);
 		console.log('added a new user');
-		res.locals.response = {'status':'ok'};
-		next();
+		console.log('data received after creating new user: ', data);
+		//res.locals.response = {'status':'ok'};
+
+		//next();
 	});
 
 	
@@ -155,14 +160,18 @@ nEatController.checkUser = (req, res, next) => {
 			if(data['rows'].length == 0){
 				console.log("no such user exists.");
 				nEatController.addUser(req.body.email, req.body.password, res, next);
+				nEatController.checkUser(req, res, next);
 				
 			}else if(data['rows'][0]['passhash'] != req.body.password){
 				console.log('wrong password');
+
 				res.locals.response = {'status':'fail'};
 				next();
 			}else{
 				console.log('user found');
-				res.locals.response = {'status':'ok'};
+				console.log('user id: ', data['rows'][0]['_id']);
+				req.cookies = {'user_id' : data['rows'][0]['_id']};
+				res.locals.response = {'status':'ok', 'req.cookies': req.cookies};
 				
 				next();
 			}
@@ -173,6 +182,7 @@ nEatController.checkUser = (req, res, next) => {
 		res.locals.response = {'status':'fail'};
 		next();
 	}
+
   	
 	
 };
